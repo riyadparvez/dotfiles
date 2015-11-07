@@ -1,0 +1,7 @@
+alias grep="grep --color=always"
+alias less="less -R"
+alias cp="cp -r"
+alias xclip="xclip -selection clipboard"
+alias ..="cd .."
+alias make_list="make -qp | sed -n -e 's/^\([^.#[:space:]][^:[:space:]]*\): .*/\1/p'"
+
