@@ -5,3 +5,14 @@ alias cp="cp -r"
 alias xclip="xclip -selection clipboard"
 alias ..="cd .."
 alias make_list="make -qp | sed -n -e 's/^\([^.#[:space:]][^:[:space:]]*\): .*/\1/p'"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+if [ "$OS" == 'osx' ]; then
+    alias local-ip='ipconfig getifaddr en1'
+elif [ "$OS" == 'ubuntu' ]; then
+    alias local-ip="ifconfig | \
+                    | grep 'inet addr' \
+                    | grep -v '127.0.0.1' \
+                    | cut -d: -f2 \
+                    | cut -d' ' -f1"
+fi
