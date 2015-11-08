@@ -7,6 +7,12 @@ alias ..="cd .."
 alias make_list="make -qp | sed -n -e 's/^\([^.#[:space:]][^:[:space:]]*\): .*/\1/p'"
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
+alias apti="sudo aptitude install"
+alias aptr="sudo aptitude remove"
+alias apts="sudo aptitude search"
+alias aptu="sudo aptitude update \
+                 && sudo apt-get upgrade"
+
 if [ "$OS" == 'osx' ]; then
     alias local-ip='ipconfig getifaddr en1'
 elif [ "$OS" == 'ubuntu' ]; then
