@@ -16,3 +16,6 @@ set smarthome
 
 # Set softwrap
 set softwrap
+
+# Set bracket matching
+set matchbrackets "(<[{)>]}"
