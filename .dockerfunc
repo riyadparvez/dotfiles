@@ -31,30 +31,6 @@ relies_on(){
 	done
 }
 
-#
-# Container Aliases
-#
-apt_file(){
-	docker run --rm -it \
-		--name apt-file \
-		jess/apt-file
-}
-alias apt-file="apt_file"
-
-cadvisor(){
-	docker run -d \
-		--restart always \
-		-v /:/rootfs:ro \
-		-v /var/run:/var/run:rw \
-		-v /sys:/sys:ro  \
-		-v /var/lib/docker/:/var/lib/docker:ro \
-		-p 1234:8080 \
-		--name cadvisor \
-		google/cadvisor
-
-	sudo hostess add cadvisor $(docker inspect --format "{{.NetworkSettings.Networks.bridge.IPAddress}}" cadvisor)
-	browser-exec "http://cadvisor:8080"
-}
 tor(){
 	del_stopped tor
 
@@ -69,6 +45,7 @@ tor(){
 	# validate we are running through tor
 	browser-exec "https://check.torproject.org/"
 }
+
 torbrowser(){
 	del_stopped torbrowser
 
@@ -85,22 +62,7 @@ torbrowser(){
 	# exit current shell
 	exit 0
 }
-tormessenger(){
-	del_stopped tormessenger
 
-	docker run -d \
-		-v /etc/localtime:/etc/localtime:ro \
-		-v /tmp/.X11-unix:/tmp/.X11-unix \
-		-e DISPLAY=unix$DISPLAY \
-		-e GDK_SCALE \
-		-e GDK_DPI_SCALE \
-		--device /dev/snd \
-		--name tormessenger \
-		jess/tor-messenger
-
-	# exit current shell
-	exit 0
-}
 torproxy(){
 	del_stopped torproxy
 
