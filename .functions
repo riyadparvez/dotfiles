@@ -39,3 +39,9 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
+# Find memory usage by name of the executable
+mem()
+{                                                                                                      
+    ps -eo rss,pid,euser,args:100 --sort %mem | grep -v grep | grep -i $@ | awk '{printf $1/1024 "MB"; $1=""; print }'
+}

@@ -18,6 +18,17 @@ del_stopped(){
 	fi
 }
 
+rm_containers(){
+    CONTAINER_IDS=$(docker ps -a -q)
+
+    echo Stopping the containers
+    docker stop ${CONTAINER_IDS}
+    echo
+
+    echo Removing the containers
+    docker rm -f ${CONTAINER_IDS}
+}
+
 relies_on(){
 	local containers=$@
 
